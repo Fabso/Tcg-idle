@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <title> TCG IDLE Collector</title>
+    </head>
+    
+    <body>
+        <p>TCG IDLE Colector</p>
+        <p>Dinero: <span id="dinero">0</span>
+        </p>
+        <img src="images/01-alphabooster.jpg" height="256px" onclick="addcard(clickpower)">
+
+        <button onclick="buycard()"> Card[<span id="cardcost">10</span>]--<span id="amountcard">0</span>
+        <button onclick="buypack()"> Pack[<span id="packcost">100</span>]--<span id="amountpack">0</span>    
+        </button>
+        
+        <script>
+            var clickpower = 1;
+            var dinero = 0 ;
+            var amountcard= 0;
+            var cardcost = 10;
+            var amountpack = 0;
+            var packcost = 100;
+
+
+            function buycard(){
+                if(dinero >= cardcost){
+                    dinero = dinero - cardcost;
+                    amountcard = amountcard + 1;
+                    cardcost = Math.round(cardcost * 1.15);
+
+                    document.getElementById("amountcard").innerHTML = amountcard;
+                    document.getElementById("dinero").innerHTML = dinero;
+                    document.getElementById("cardcost").innerHTML = cardcost;
+
+                }
+                
+            }
+
+            function buypack(){
+                if(dinero >= packcost){
+                    dinero = dinero - packcost;
+                    amountpack = amountpack + 1;
+                    packcost = Math.round(packcost * 1.15);
+
+                    document.getElementById("amountpack").innerHTML = amountpack;
+                    document.getElementById("dinero").innerHTML = dinero;
+                    document.getElementById("packcost").innerHTML = packcost;
+
+                }
+                
+            }
+
+            function addcard(amount){
+                dinero = dinero + amount;
+                document.getElementById("dinero").innerHTML = dinero;
+            }
+
+            setInterval(() => {
+                dinero = dinero + amountcard;
+                dinero = dinero + amountpack *3;
+                document.getElementById("dinero").innerHTML = dinero;
+            }, 1000);
+
+        </script>
+    </body>
+</html>
