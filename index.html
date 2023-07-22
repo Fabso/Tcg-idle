@@ -5,8 +5,10 @@
     
     <body>
         <p>TCG IDLE Colector</p>
-        <p>Dinero: <span id="dinero">0</span>
-        </p>
+
+        <p>Dinero: <span id="dinero">0</span></p>
+        <p>Dinero por segundo: <span id="dps">0</span></p>
+
         <img src="images/01-alphabooster.jpg" height="256px" onclick="addcard(clickpower)">
 
         <button onclick="buycard()"> Card[<span id="cardcost">10</span>]--<span id="amountcard">0</span>
@@ -16,6 +18,7 @@
         <script>
             var clickpower = 1;
             var dinero = 0 ;
+            var dps = 0;
             var amountcard= 0;
             var cardcost = 10;
             var amountpack = 0;
@@ -31,7 +34,7 @@
                     document.getElementById("amountcard").innerHTML = amountcard;
                     document.getElementById("dinero").innerHTML = dinero;
                     document.getElementById("cardcost").innerHTML = cardcost;
-
+                    updatedpd(); 
                 }
                 
             }
@@ -45,7 +48,7 @@
                     document.getElementById("amountpack").innerHTML = amountpack;
                     document.getElementById("dinero").innerHTML = dinero;
                     document.getElementById("packcost").innerHTML = packcost;
-
+                    updatedpd();
                 }
                 
             }
@@ -53,6 +56,11 @@
             function addcard(amount){
                 dinero = dinero + amount;
                 document.getElementById("dinero").innerHTML = dinero;
+            }
+
+            function updatedpd(){
+                dps = amountcard + amountpack *3;
+                document.getElementById("dps").innerHTML = dps;
             }
 
             setInterval(() => {
