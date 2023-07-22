@@ -1,20 +1,50 @@
 <html>
     <head>
         <title> TCG IDLE Collector</title>
+
+        <style>
+            .seccionizq {float: left; width: 80%;} 
+            .seccionder{float: right; width: 20%;}
+            .dinerocontenedor{
+                background-color: antiquewhite;
+                width: 50%;
+                padding: 10px;
+                border-radius: 10px;
+                font-size: 24px;
+            } 
+
+            .clickcontenedor img{ 
+                position: relative;
+                transition: all .2 ease-in-out;}
+            .clickcontenedor img:hover{ transform: scale(1.1);}
+            .clickcontenedor img:active{ transform: scale(0.99);}
+        </style>
     </head>
     
     <body>
         <p>TCG IDLE Colector</p>
+        <div class="seccionizq">
+            <center> 
+                <div class="dinerocontenedor">
+                Dinero: <span id="dinero">0</span><br>
+                Dinero por segundo: <span id="dps">0</span>
+                </div><br>
+                <div class="clickcontenedor">
+                <img src="images/01-alphabooster.jpg" height="256px" onclick="addcard(clickpower)">
+                </div>  
+            </center>
+        </div> 
 
-        <p>Dinero: <span id="dinero">0</span></p>
-        <p>Dinero por segundo: <span id="dps">0</span></p>
+            
+   
 
-        <img src="images/01-alphabooster.jpg" height="256px" onclick="addcard(clickpower)">
-
-        <button onclick="buycard()"> Card[<span id="cardcost">10</span>]--<span id="amountcard">0</span>
+        <div class="seccionder">
+        <button onclick="buycard()"> Card[<span id="cardcost">10</span>]--<span id="amountcard">0</span><br>
         <button onclick="buypack()"> Pack[<span id="packcost">100</span>]--<span id="amountpack">0</span>    
         </button>
-        
+        </div> 
+
+
         <script>
             var clickpower = 1;
             var dinero = 0 ;
