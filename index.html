@@ -15,9 +15,29 @@
 
             .clickcontenedor img{ 
                 position: relative;
-                transition: all .2 ease-in-out;}
+                transition: all .2s ease-in-out;
+            }
+            
             .clickcontenedor img:hover{ transform: scale(1.1);}
             .clickcontenedor img:active{ transform: scale(0.99);}
+
+            .shopbutton{
+                background-color: antiquewhite;
+                transition: all .2s ease-in-out;
+                border-radius: 10px;
+                width: 100%;
+                margin: 10px 0px 10px 0px;
+            }
+            .shopbutton:hover{
+                background-color: azure;
+                transition: all .2s ease-in-out;
+            }
+
+            .shopbutton #image{width: 25%;}
+            .shopbutton img{
+                height: 64px;
+                width: 48px;
+            }
         </style>
     </head>
     
@@ -30,7 +50,7 @@
                 Dinero por segundo: <span id="dps">0</span>
                 </div><br>
                 <div class="clickcontenedor">
-                <img src="images/01-alphabooster.jpg" height="256px" onclick="addcard(clickpower)">
+                <img src="images/01-reversecard.jpg" height="256px" onclick="addcard(clickpower)">
                 </div>  
             </center>
         </div> 
@@ -39,9 +59,26 @@
    
 
         <div class="seccionder">
-        <button onclick="buycard()"> Card[<span id="cardcost">10</span>]--<span id="amountcard">0</span><br>
-        <button onclick="buypack()"> Pack[<span id="packcost">100</span>]--<span id="amountpack">0</span>    
-        </button>
+            <table class="shopbutton" onclick="buycard()">
+                <tr>
+                    <td id="image"><img src="images/01-reversecard.jpg"></td>
+                    <td id="nameandcost">
+                        <p>Carta: <span id="cardcost">10</span></p>
+                    </td>
+                    <td id="amount"><span id="amountcard">0</span></td>
+                    
+                </tr>
+            </table>
+            <table class="shopbutton" onclick="buypack()">
+                <tr>
+                    <td id="image"><img src="images/01-alphabooster.jpg"></td>
+                    <td id="nameandcost">
+                        <p>Pack: <span id="packcost">100</span></p>
+                    </td>
+                    <td id="amount"><span id="amountpack">0</span></td>
+                    
+                </tr>
+            </table>
         </div> 
 
 
