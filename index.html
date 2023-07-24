@@ -115,7 +115,7 @@
                     document.getElementById("amountpack").innerHTML = amountpack;
                     document.getElementById("dinero").innerHTML = dinero;
                     document.getElementById("packcost").innerHTML = packcost;
-                    updatedpd();
+                    updatedps();
                 }
                 
             }
@@ -125,16 +125,52 @@
                 document.getElementById("dinero").innerHTML = dinero;
             }
 
-            function updatedpd(){
+            function updatedps(){
                 dps = amountcard + amountpack *3;
                 document.getElementById("dps").innerHTML = dps;
             }
+            function saveGame(){
+                var gameSave = {
+                    dinero: dinero,
+                    dps: dps,
+                    amountcard: amountcard,
+                    amountpack: amountpack,
+                    cardcost: cardcost,
+                    packcost: packcost
+               };
+               localStorage.setItem("gameSave",JSON.stringify(gameSave));
+            }
+
+            function loadGame(){
+                var savedGame = JSON.parse(localStorage.getItem("gameSave"));
+                if(typeof savedGame.dinero !== "undefined") dinero = savedGame.dinero;
+                if(typeof savedGame.dps !== "undefined") dps = savedGame.dps;
+                if(typeof savedGame.amountcard !== "undefined") amountcard  = savedGame.amountcard;
+                if(typeof savedGame.amountpack  !== "undefined") amountpack = savedGame.amountpack;
+                if(typeof savedGame.cardcost !== "undefined") cardcost = savedGame.cardcost;
+                if(typeof savedGame.packcost !== "undefined") packcost = savedGame.packcost;
+            }
+
+            window.onload = function(){
+                loadGame();
+                updatedps();
+                document.getElementById("amountpack").innerHTML = amountpack;
+                document.getElementById("dinero").innerHTML = dinero;
+                document.getElementById("packcost").innerHTML = packcost;
+                document.getElementById("amountcard").innerHTML = amountcard;
+                document.getElementById("dinero").innerHTML = dinero;
+                document.getElementById("cardcost").innerHTML = cardcost;                
+            };
 
             setInterval(() => {
                 dinero = dinero + amountcard;
                 dinero = dinero + amountpack *3;
                 document.getElementById("dinero").innerHTML = dinero;
             }, 1000);
+
+            setInterval(()=> {
+                saveGame();
+            },30000)
 
         </script>
     </body>
