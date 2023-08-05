@@ -51,12 +51,13 @@
                 </div><br>
                 <div class="clickcontenedor">
                 <img src="images/01-reversecard.jpg" height="256px" onclick="addcard(clickpower)">
-                </div>  
+                </div> 
             </center>
         </div> 
-
-            
-   
+        <div class="SeccionFooter">
+            <h5>TCG IDLE</h5>
+            <button onclick="resetGame();">Reset Game</button>
+        </div>         
 
         <div class="seccionder">
             <table class="shopbutton" onclick="buycard()">
@@ -101,7 +102,7 @@
                     document.getElementById("amountcard").innerHTML = amountcard;
                     document.getElementById("dinero").innerHTML = dinero;
                     document.getElementById("cardcost").innerHTML = cardcost;
-                    updatedpd(); 
+                    updatedps(); 
                 }
                 
             }
@@ -151,6 +152,15 @@
                 if(typeof savedGame.packcost !== "undefined") packcost = savedGame.packcost;
             }
 
+            function resetGame(){
+                if(confirm("Are you sure to reset game?")){
+                    var gameSave = {};
+                    localStorage.setItem("gameSave",JSON.stringify(gameSave));
+                    location.reload();
+                }
+            
+            }
+
             window.onload = function(){
                 loadGame();
                 updatedps();
@@ -170,7 +180,14 @@
 
             setInterval(()=> {
                 saveGame();
-            },30000)
+            },30000);
+
+            document.addEventListener("keydown", function(event){
+                if(event.ctrlKey && event.which == 83){// ctrl + s
+                    event.preventDefault();
+                    saveGame();
+                }
+            },false);
 
         </script>
     </body>
