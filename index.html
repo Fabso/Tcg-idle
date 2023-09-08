@@ -117,7 +117,43 @@
                 }
             };
 
+            function saveGame(){
+                var gameSave = {
+                    dinero: game.dinero,
+                    dps: game.getDps(),
+                    count: sealed.count,
+                    cost: sealed.cost,
+               };
+
+               localStorage.setItem("gameSave",JSON.stringify(gameSave));
+            }
+
+            function loadGame(){
+                var savedGame = JSON.parse(localStorage.getItem("gameSave"));
+                if(typeof savedGame.dinero !== "undefined") dinero = savedGame.dinero;
+                if(typeof savedGame.dps !== "undefined") dps = savedGame.dps;
+                if(typeof savedGame.count !== "undefined") count  = savedGame.count;
+                if(typeof savedGame.cost !== "undefined") cost = savedGame.cost;
+
+            }
+
+            function resetGame(){
+                if(confirm("Are you sure to reset game?")){
+                    var gameSave = {};
+                    localStorage.setItem("gameSave",JSON.stringify(gameSave));
+                    location.reload();
+                }
+            
+            }
+            
+            setInterval(() => {
+                game.dinero +=  sealed.count[0];
+                game.dinero +=  sealed.count[1] *3;
+                document.getElementById("dinero").innerHTML = game.dinero;
+            }, 1000);
+
             window.onload = function(){
+                loadGame();
                 display.updateDinero();
                 display.updateShop();
             };
